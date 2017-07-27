@@ -1,0 +1,7 @@
+---
+
+  - name: restart apache
+    service: name=httpd state=restarted
+
+  - name: check if httpd has port 443 open
+    shell: ss -tp state listening sport = :443 | grep httpd

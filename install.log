@@ -1,0 +1,46 @@
+
+Connecting to server... connected.
+HTTP request sent, awaiting response... 200 OK
+Length: 40949971 (39M) [application/x-rpm]
+Saving to: ‘ansible.rpm’
+
+100%[==================================================================================================================================================================>] 40,949,971  4.34MB/s   in 8.9s
+
+2017-07-26 20:26:02 (4.41 MB/s) - ‘ansible.rpm’ saved [40949971/40949971]
+
+Preparing...                          ########################################
+Updating / installing...
+ansible-1.9.4+20151105023931-1.el6    ########################################
+Thank you for installing ansible!
+
+download: s3://xxxx/apache_install_playbook.yml to ./apache_install_playbook.yml
+download: s3://xxxx/apache_restart.yml to ./apache_restart.yml
+download: s3://xxxx/index.html to ./index.html
+
+Ansible playbooks downloaded
+
+Preparing...                          ########################################
+Ansible playbooks downloaded
+
+PLAY [all] ********************************************************************
+
+TASK: [Install Apache httpd] **************************************************
+ok: [localhost]
+
+TASK: [Start apache httpd] ****************************************************
+ok: [localhost]
+
+TASK: [Install ssl module] ****************************************************
+ok: [localhost]
+
+TASK: [Creates ssl directory] *************************************************
+ok: [localhost]
+
+TASK: [4. create self-signed SSL cert] ****************************************
+changed: [localhost]
+
+TASK: [copy files to document root] *******************************************
+ok: [localhost]
+
+PLAY RECAP ********************************************************************
+localhost                  : ok=6    changed=1    unreachable=0    failed=0

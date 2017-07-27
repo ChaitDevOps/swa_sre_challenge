@@ -1,0 +1,25 @@
+---
+- hosts: all
+  remote_user: ec2-user
+  gather_facts: False
+
+  tasks:
+
+  - name: Install Apache httpd
+    yum: pkg=httpd state=latest
+
+  - name: Start apache httpd
+    service: name=httpd state=running enabled=yes
+
+  - name: Install ssl module
+    yum: pkg=mod_ssl state=latest
+
+  - name: Creates ssl directory
+    file: path=/etc/httpd/ssl state=directory
+
+  - name: 4. create self-signed SSL cert
+    command: openssl req -new -nodes -x509 -subj "/C=US/ST=Delaware/L=Wilmington/O=IT/CN=abc" -days 365 -keyout /etc/httpd/ssl/myserver.key -out /etc/httpd/ssl/myserver.crt -extensions v3_ca
+
+  - name: copy files to document root
+    template: src=/tmp/index.html dest=/var/www/html/index.html mode=0664
+    notify: restart apache
