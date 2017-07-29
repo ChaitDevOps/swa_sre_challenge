@@ -1,6 +1,11 @@
 ---
+- hosts: all
+  remote_user: ec2-user
+  gather_facts: False
 
-  - name: restart apache
+  tasks:
+
+  - name: apache restart
     service: name=httpd state=restarted
 
   - name: check if httpd has port 443 open
