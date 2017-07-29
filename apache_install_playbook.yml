@@ -20,6 +20,6 @@
   - name: 4. create self-signed SSL cert
     command: openssl req -new -nodes -x509 -subj "/C=US/ST=Delaware/L=Wilmington/O=IT/CN=abc" -days 365 -keyout /etc/httpd/ssl/myserver.key -out /etc/httpd/ssl/myserver.crt -extensions v3_ca
 
-  - name: copy files to document root
-    template: src=/tmp/index.html dest=/var/www/html/index.html mode=0664
-    notify: restart apache
+  #- name: copy files to document root
+  #  template: src=/tmp/index.html dest=/var/www/html/index.html mode=0664
+  #  notify: restart apache
