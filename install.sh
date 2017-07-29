@@ -23,23 +23,20 @@ echo "Hostname: $cur_hostname" >> install.log
 
 echo "  " >> /etc/httpd/conf/httpd.conf
 echo "LoadModule ssl_module modules/mod_ssl.so" >> /etc/httpd/conf/httpd.conf
-echo "  " >> /etc/httpd/conf/httpd.conf
 echo "Listen 443" >> /etc/httpd/conf/httpd.conf
 
 echo "  " >> /etc/httpd/conf/httpd.conf
-echo "<VirtualHost *:80>" >> /etc/httpd/conf/httpd.conf
-echo "Redirect permanent / https://$cur_hostname:443" >> /etc/httpd/conf/httpd.conf
-echo "</VirtualHost>" >> /etc/httpd/conf/httpd.conf
+echo "<VirtualHost *:80>
+        Redirect permanent / https://$cur_hostname:443
+      </VirtualHost>" >> /etc/httpd/conf/httpd.conf
 echo "  " >> /etc/httpd/conf/httpd.conf
 
-echo "  " >> /etc/httpd/conf/httpd.conf
-echo "<VirtualHost *:443>" >> /etc/httpd/conf/httpd.conf
-echo "ServerName $cur_hostname" >> /etc/httpd/conf/httpd.conf
-echo "SSLEngine on" >> /etc/httpd/conf/httpd.conf
-echo "SSLCertificateFile /etc/httpd/ssl/myserver.crt" >> /etc/httpd/conf/httpd.conf
-echo "SSLCertificateKeyFile /etc/httpd/ssl/myserver.key" >> /etc/httpd/conf/httpd.conf
-echo "</VirtualHost>" >> /etc/httpd/conf/httpd.conf
-echo "  " >> /etc/httpd/conf/httpd.conf
+echo "<VirtualHost *:443>
+        ServerName $cur_hostname
+        SSLEngine on
+        SSLCertificateFile /etc/httpd/ssl/myserver.crt
+        SSLCertificateKeyFile /etc/httpd/ssl/myserver.key
+      </VirtualHost>" >> /etc/httpd/conf/httpd.conf
 
 # service httpd restart
 
